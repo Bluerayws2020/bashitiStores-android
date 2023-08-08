@@ -2,4 +2,25 @@
     <string name="app_name">bashitiStores</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="we_represent_some_of_the_biggest_and_leading_n_brand_names_in_the_market">We represent some of the biggest and leading \n brand names in the market</string>
+    <string name="welcome_back">Welcome Back</string>
+    <string name="remember_me">Remember Me</string>
+    <string name="forgot_password">Forgot Password ?</string>
+    <string name="login">Login</string>
+    <string name="sign_up">Sign up</string>
+    <string name="create_an_account">Create an Account</string>
+    <string name="email_address">Email Address</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="client_id">Client Id</string>
+    <string name="acc_balance">Acc Balance</string>
+    <string name="client_ename">Client EName</string>
+    <string name="client_taxid">Client Taxid</string>
+    <string name="client_f_name">Client F Name</string>
+    <string name="client_uuid">Client Uuid</string>
+    <string name="sign_up_btn">Sign Up</string>
+    <string name="already_you_have_account">Already you have account?</string>
+    <string name="sign_in">Sign in</string>
 </resources>
