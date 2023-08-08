@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/home_nav_gragh"
+    app:startDestination="@id/hmeFragment">
+
+    <fragment
+        android:id="@+id/hmeFragment"
+        android:name="com.blueray.bashitistores.fragments.HomeFragment"
+        android:label="fragment_hme"
+        tools:layout="@layout/fragment_hme" />
+</navigation>
