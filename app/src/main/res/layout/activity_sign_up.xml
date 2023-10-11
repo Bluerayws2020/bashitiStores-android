@@ -11,71 +11,43 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <LinearLayout
-            android:id="@+id/welcomeMessageLayout"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:orientation="vertical"
-            >
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="60dp"
-                android:text="@string/create_an_account"
-                android:textSize="30sp"
-                android:textColor="@color/loginTitleColor"
-                android:textStyle="bold"
-                android:fontFamily="@font/dm_sans_regular"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/we_represent_some_of_the_biggest_and_leading_n_brand_names_in_the_market"
-                android:textAlignment="center"
-                android:layout_marginTop="10dp"
-                android:textColor="@color/descriptionColor"
-                android:textSize="15sp"
-                />
-        </LinearLayout>
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/emailLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/welcomeMessageLayout"
-            android:layout_marginTop="45dp"
-            >
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="12dp"
+            app:layout_constraintTop_toTopOf="parent">
+
             <TextView
                 android:id="@+id/emailLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:text="@string/email_address"
                 android:layout_marginStart="25dp"
-                android:textColor="@color/loginTitleColor"
-                android:textStyle="bold"
-                android:textSize="15sp"
                 android:fontFamily="@font/dm_sans_regular"
-                />
+                android:text="@string/email_address"
+                android:textColor="@color/loginTitleColor"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
             <EditText
                 android:id="@+id/emailET"
                 android:layout_width="0dp"
                 android:layout_height="60dp"
-                android:layout_marginEnd="25dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/emailLabel"
-                android:background="@drawable/custom_edit_text"
-                app:layout_constraintStart_toStartOf="@id/emailLabel"
                 android:layout_marginTop="10sp"
-                android:textSize="17sp"
+                android:layout_marginEnd="25dp"
+                android:background="@drawable/custom_edit_text"
                 android:fontFamily="@font/dm_sans_regular"
                 android:paddingStart="15sp"
                 android:paddingEnd="15sp"
-                />
+                android:textSize="17sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@id/emailLabel"
+                app:layout_constraintTop_toBottomOf="@id/emailLabel" />
         </androidx.constraintlayout.widget.ConstraintLayout>
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/passwordLayout"
@@ -120,6 +92,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/passwordLayout"
             android:layout_marginTop="15dp"
+            android:visibility="gone"
             >
             <TextView
                 android:id="@+id/confirmPasswordLabel"
@@ -171,22 +144,23 @@
                 android:textSize="15sp"
                 android:fontFamily="@font/dm_sans_regular"
                 />
+
             <EditText
                 android:id="@+id/phoneNumberET"
-                android:inputType="phone"
                 android:layout_width="0dp"
                 android:layout_height="60dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginEnd="25dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/phoneNumberLabel"
                 android:background="@drawable/custom_edit_text"
-                app:layout_constraintStart_toStartOf="@id/phoneNumberLabel"
-                android:layout_marginTop="10sp"
-                android:textSize="17sp"
                 android:fontFamily="@font/dm_sans_regular"
+                android:inputType="phone"
                 android:paddingStart="15sp"
                 android:paddingEnd="15sp"
-                />
+                android:textSize="17sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@id/phoneNumberLabel"
+                app:layout_constraintTop_toBottomOf="@id/phoneNumberLabel" />
         </androidx.constraintlayout.widget.ConstraintLayout>
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/ClientIDLayout"
@@ -194,6 +168,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/phoneNumberLayout"
             android:layout_marginTop="15dp"
+            android:visibility="gone"
             >
             <TextView
                 android:id="@+id/clientIDLabel"
@@ -225,154 +200,10 @@
                 />
         </androidx.constraintlayout.widget.ConstraintLayout>
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/AccBalanceLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/ClientIDLayout"
-            android:layout_marginTop="15dp"
-            >
-            <TextView
-                android:id="@+id/AccBalanceLabel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:text="@string/acc_balance"
-                android:layout_marginStart="25dp"
-                android:textColor="@color/loginTitleColor"
-                android:textStyle="bold"
-                android:textSize="15sp"
-                android:fontFamily="@font/dm_sans_regular"
-                />
-            <EditText
-                android:id="@+id/AccBalanceET"
-                android:layout_width="0dp"
-                android:layout_height="60dp"
-                android:layout_marginEnd="25dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/AccBalanceLabel"
-                android:background="@drawable/custom_edit_text"
-                app:layout_constraintStart_toStartOf="@id/AccBalanceLabel"
-                android:layout_marginTop="10sp"
-                android:textSize="17sp"
-                android:fontFamily="@font/dm_sans_regular"
-                android:paddingStart="15sp"
-                android:paddingEnd="15sp"
-                />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/ClientENameLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/AccBalanceLayout"
-            android:layout_marginTop="15dp"
-            >
-            <TextView
-                android:id="@+id/ClientENameLabel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:text="@string/client_ename"
-                android:layout_marginStart="25dp"
-                android:textColor="@color/loginTitleColor"
-                android:textStyle="bold"
-                android:textSize="15sp"
-                android:fontFamily="@font/dm_sans_regular"
-                />
-            <EditText
-                android:id="@+id/clientENameEt"
-                android:layout_width="0dp"
-                android:layout_height="60dp"
-                android:layout_marginEnd="25dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/ClientENameLabel"
-                android:background="@drawable/custom_edit_text"
-                app:layout_constraintStart_toStartOf="@id/ClientENameLabel"
-                android:layout_marginTop="10sp"
-                android:textSize="17sp"
-                android:fontFamily="@font/dm_sans_regular"
-                android:paddingStart="15sp"
-                android:paddingEnd="15sp"
-                />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/ClientTaxidLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/ClientENameLayout"
-            android:layout_marginTop="15dp"
-            >
-            <TextView
-                android:id="@+id/ClientTaxidLabel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:text="@string/client_taxid"
-                android:layout_marginStart="25dp"
-                android:textColor="@color/loginTitleColor"
-                android:textStyle="bold"
-                android:textSize="15sp"
-                android:fontFamily="@font/dm_sans_regular"
-                />
-            <EditText
-                android:id="@+id/clientTaxidET"
-                android:layout_width="0dp"
-                android:layout_height="60dp"
-                android:layout_marginEnd="25dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/ClientTaxidLabel"
-                android:background="@drawable/custom_edit_text"
-                app:layout_constraintStart_toStartOf="@id/ClientTaxidLabel"
-                android:layout_marginTop="10sp"
-                android:textSize="17sp"
-                android:fontFamily="@font/dm_sans_regular"
-                android:paddingStart="15sp"
-                android:paddingEnd="15sp"
-                />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/ClientFnameLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/ClientTaxidLayout"
-            android:layout_marginTop="15dp"
-            >
-            <TextView
-                android:id="@+id/ClientFnameLabel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:text="@string/client_f_name"
-                android:layout_marginStart="25dp"
-                android:textColor="@color/loginTitleColor"
-                android:textStyle="bold"
-                android:textSize="15sp"
-                android:fontFamily="@font/dm_sans_regular"
-                />
-            <EditText
-                android:id="@+id/clientFNameET"
-                android:layout_width="0dp"
-                android:layout_height="60dp"
-                android:layout_marginEnd="25dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/ClientFnameLabel"
-                android:background="@drawable/custom_edit_text"
-                app:layout_constraintStart_toStartOf="@id/ClientFnameLabel"
-                android:layout_marginTop="10sp"
-                android:textSize="17sp"
-                android:fontFamily="@font/dm_sans_regular"
-                android:paddingStart="15sp"
-                android:paddingEnd="15sp"
-                />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/ClientUuidLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/ClientFnameLayout"
+            app:layout_constraintTop_toBottomOf="@id/ClientIDLayout"
             android:layout_marginTop="15dp"
             >
             <TextView
@@ -381,15 +212,15 @@
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                android:text="@string/client_uuid"
+                android:text="barth day"
                 android:layout_marginStart="25dp"
                 android:textColor="@color/loginTitleColor"
                 android:textStyle="bold"
                 android:textSize="15sp"
                 android:fontFamily="@font/dm_sans_regular"
                 />
-            <EditText
-                android:id="@+id/clientUuidET"
+            <TextView
+                android:id="@+id/barthDay"
                 android:layout_width="0dp"
                 android:layout_height="60dp"
                 android:layout_marginEnd="25dp"
@@ -402,7 +233,11 @@
                 android:fontFamily="@font/dm_sans_regular"
                 android:paddingStart="15sp"
                 android:paddingEnd="15sp"
+
                 />
+
+
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 <!--        <CheckBox-->
@@ -432,6 +267,26 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/signupBtn"
+            app:layout_constraintTop_toBottomOf="@id/ClientUuidLayout"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            style="?attr/materialButtonOutlinedStyle"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:backgroundTint="@color/black"
+            android:text="@string/sign_up_btn"
+            android:textColor="#EFBA00"
+            android:fontFamily="@font/dm_sans_regular"
+            android:layout_marginStart="45dp"
+            android:layout_marginEnd="45dp"
+            android:layout_marginTop="35dp"
+            app:cornerRadius="10sp"
+            />
+
+        <ProgressBar
+            android:id="@+id/pd"
+            android:visibility="gone"
+
             app:layout_constraintTop_toBottomOf="@id/ClientUuidLayout"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

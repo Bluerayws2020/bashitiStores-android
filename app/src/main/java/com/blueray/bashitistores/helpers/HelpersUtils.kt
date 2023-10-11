@@ -57,4 +57,17 @@ object HelpersUtils {
         val sharedPreferences = mContext?.getSharedPreferences(SHARED_PREF, Context.MODE_PRIVATE)
         return sharedPreferences?.getString("lang", "en")!!
     }
+
+
+    fun getUID(mContext: Context?): String {
+        val sharedPreferences = mContext?.getSharedPreferences(SHARED_PREF, Context.MODE_PRIVATE)
+        return sharedPreferences?.getString("uid", "0")!!
+    }
+
+
+
+    fun getToken(mContext: Context?): String {
+        val sharedPreferences = mContext?.getSharedPreferences(SHARED_PREF, Context.MODE_PRIVATE)
+        return sharedPreferences?.getString("token", "0")!!
+    }
 }

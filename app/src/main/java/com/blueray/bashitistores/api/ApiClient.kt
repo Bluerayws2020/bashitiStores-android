@@ -9,7 +9,7 @@ import java.util.concurrent.TimeUnit
 
 object ApiClient {
 
-    private const val USER_BASE_URL = "https://nerdjo.com/"
+    private const val USER_BASE_URL = "https://www.bashitistores.com/"
 
     private fun getRetrofit(baseUrl: String): Retrofit {
         val okHttpClient = OkHttpClient.Builder()

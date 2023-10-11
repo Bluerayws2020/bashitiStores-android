@@ -23,4 +23,8 @@
     <string name="sign_up_btn">Sign Up</string>
     <string name="already_you_have_account">Already you have account?</string>
     <string name="sign_in">Sign in</string>
+    <string name="error">error\n</string>
+    <string name="no_email">email not exist</string>
+    <string name="granted">done\n</string>
+    <string name="denied">not done\n</string>
 </resources>
