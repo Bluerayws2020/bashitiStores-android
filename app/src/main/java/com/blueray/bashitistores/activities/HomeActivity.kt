@@ -8,21 +8,20 @@ import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.net.Uri
+import android.net.http.SslError
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
-import android.webkit.ValueCallback
-import android.webkit.WebChromeClient
-import android.webkit.WebResourceRequest
-import android.webkit.WebView
-import android.webkit.WebViewClient
+import android.webkit.*
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
 import com.blueray.bashitistores.R
 import com.blueray.bashitistores.databinding.ActivityHomeBinding
 import com.blueray.bashitistores.helpers.HelpersUtils
+import com.blueray.bashitistores.helpers.ViewUtils.hide
+import com.blueray.bashitistores.helpers.ViewUtils.show
 
 
 class HomeActivity : AppCompatActivity() {
@@ -33,28 +32,50 @@ class HomeActivity : AppCompatActivity() {
         private lateinit var binding: ActivityHomeBinding
         private var uploadCallback: ValueCallback<Array<Uri>>? = null
         private var mFileChooserParams: WebChromeClient.FileChooserParams? = null
+        private var firstLogin =true
 
         @SuppressLint("SetJavaScriptEnabled")
         override fun onCreate(savedInstanceState: Bundle?) {
             super.onCreate(savedInstanceState)
             binding = ActivityHomeBinding.inflate(layoutInflater)
             setContentView(binding.root)
-            window.setFlags(
-                WindowManager.LayoutParams.FLAG_SECURE,
-                WindowManager.LayoutParams.FLAG_SECURE
-            )
+//            window.setFlags(
+//                WindowManager.LayoutParams.FLAG_SECURE,
+//                WindowManager.LayoutParams.FLAG_SECURE
+//            )
             supportActionBar?.hide()
 
-            binding.webView.settings.javaScriptEnabled = true
-            binding.webView.settings.domStorageEnabled = true
-            binding.webView.settings.allowFileAccess = true
-            binding.webView.settings.allowContentAccess = true
+            val selectedLang = intent.getStringExtra("lang") as String
+
+
+
+
+            val settings = binding.webView.settings
+            settings.javaScriptEnabled = true // Enable JavaScript
+            settings.loadWithOverviewMode = true
+            settings.useWideViewPort = true
+            settings.domStorageEnabled = true
+            settings.allowFileAccess = true
+            settings.allowContentAccess = true
+            settings.cacheMode = WebSettings.LOAD_DEFAULT
             binding.webView.webViewClient = WebViewCustom()
             binding.webView.webChromeClient = MyCustomChromeClient()
-            var uid = HelpersUtils.getUID(this)
-            var token  = HelpersUtils.getToken(this)
+
+            // enable pinch zoom
+            settings.setBuiltInZoomControls(true)
+            settings.setDisplayZoomControls(false)
+
+//            var uid = HelpersUtils.getUID(this)
+//            var token  = HelpersUtils.getToken(this)
             if (savedInstanceState == null)
-                binding.webView.loadUrl("https://bashitistores.com/app/siteLogin?lang=ar&uid=$uid&token=$token")
+            {
+                // check for lang
+                if(selectedLang == "en"){
+                    binding.webView.loadUrl("https://bashitistores.com/")
+                }else{
+                    binding.webView.loadUrl("https://bashitistores.com/ar")
+                }
+            }
         }
 
 
@@ -114,38 +135,52 @@ class HomeActivity : AppCompatActivity() {
 
         inner class WebViewCustom : WebViewClient() {
 
-            override fun shouldOverrideUrlLoading(view: WebView, request: WebResourceRequest): Boolean {
-//                return when {
-//                    request.url.toString().contains("login") -> {
-//                        binding.webView.loadUrl(HelperUtil.getAndroidIdLogin(this@MainActivity))
-//                        false
-//                    }
-//                    request.url.toString().contains(HelperUtil.MY_COURSE) -> {
-//                        view.loadUrl(HelperUtil.COURSES_URL)
-//                        true
-//                    }
-//                    request.url.toString().contains(HelperUtil.videosUrl) -> {
-//                        openVideoActivity(request.url.toString())
-//                        true
-//                    }
-//                    request.url.host != HelperUtil.HOST_URL -> checkUrl(request.url.toString())
+//            override fun shouldOverrideUrlLoading(view: WebView, request: WebResourceRequest): Boolean {
+////                return when {
+////                    request.url.toString().contains("login") -> {
+////                        binding.webView.loadUrl(HelperUtil.getAndroidIdLogin(this@MainActivity))
+////                        false
+////                    }
+////                    request.url.toString().contains(HelperUtil.MY_COURSE) -> {
+////                        view.loadUrl(HelperUtil.COURSES_URL)
+////                        true
+////                    }
+////                    request.url.toString().contains(HelperUtil.videosUrl) -> {
+////                        openVideoActivity(request.url.toString())
+////                        true
+////                    }
+////                    request.url.host != HelperUtil.HOST_URL -> checkUrl(request.url.toString())
+////
+////                    else -> false
+////                }
 //
-//                    else -> false
-//                }
+//                return  false
+//            }
+            override fun onReceivedSslError(view: WebView?, handler: SslErrorHandler?, error: SslError?) {
+                // Handle SSL errors here
+                // For example, you can choose to ignore SSL errors:
+                handler?.proceed()
+            }
 
-                return  false
+            override fun shouldOverrideUrlLoading(view: WebView?, url: String?): Boolean {
+                // Load URLs inside the WebView
+                view?.loadUrl(url!!)
+                return true
             }
 
             override fun onPageStarted(view: WebView, url: String, favicon: Bitmap?) {
+                binding.progressBar.show()
                 super.onPageStarted(view, url, favicon)
-                binding.progressBar.visibility = View.VISIBLE
-                binding.webView.visibility = View.GONE
             }
 
             override fun onPageFinished(view: WebView, url: String) {
-                binding.progressBar.visibility = View.GONE
-                binding.webView.visibility = View.VISIBLE
+                binding.progressBar.hide()
+//                if(firstLogin){
+//                    binding.webView.loadUrl("https://bashitistores.com/")
+//                    firstLogin = false
+//                }
                 super.onPageFinished(view, url)
+
             }
 
             //handle external links
@@ -191,7 +226,6 @@ class HomeActivity : AppCompatActivity() {
         }
 
         private inner class MyCustomChromeClient : WebChromeClient() {
-
             override fun onShowFileChooser(
                 webView: WebView?,
                 filePathCallback: ValueCallback<Array<Uri>>?,
